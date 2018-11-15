@@ -103,9 +103,105 @@ func NewServer(port string) {
 
 #### 1.3 服务器测试
 
-##### 1.3.1 curl 测试
+##### 1.3.1 运行服务器输出helloworld
+
+截图：
+
+![2](C:\Users\WYX\Desktop\ServiceComputing\week5\2.png)
+
+##### 1.3.2 curl 测试
+
+截图：
+
+![1](C:\Users\WYX\Desktop\ServiceComputing\week5\1.png)
+
+提示信息：
+
+```mathematica
+$ curl -v http://localhost:9090/  
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0*  Trying ::1...
+* TCP_NODELAY set
+* Connected to localhost (::1) port 9090 (#0)
+> GET / HTTP/1.1
+> Host: localhost:9090
+> User-Agent: curl/7.61.1
+> Accept: */*
+>
+< HTTP/1.1 200 OK
+< Date: Thu, 15 Nov 2018 12:07:26 GMT
+< Content-Length: 11
+< Content-Type: text/plain; charset=utf-8
+<
+{ [11 bytes data]
+100    11  100    11    0     0    354      0 --:--:-- --:--:-- --:--:--   354hello world
+* Connection #0 to host localhost left intact
+
+```
+
+##### 1.3.3 ab测试
+
+截图：
+
+![4](C:\Users\WYX\Desktop\ServiceComputing\week5\4.png)
+
+提示信息：
+
+```mathematica
+$ ./ab -n 1000 -c 100 http://localhost:9090/
+This is ApacheBench, Version 2.3 <$Revision: 1843412 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking localhost (be patient)
+Completed 100 requests
+Completed 200 requests
+Completed 300 requests
+Completed 400 requests
+Completed 500 requests
+Completed 600 requests
+Completed 700 requests
+Completed 800 requests
+Completed 900 requests
+Completed 1000 requests
+Finished 1000 requests
 
 
+Server Software:
+Server Hostname:        localhost
+Server Port:            9090
 
+Document Path:          /
+Document Length:        11 bytes
 
+Concurrency Level:      100
+Time taken for tests:   0.271 seconds
+Complete requests:      1000
+Failed requests:        0
+Total transferred:      128000 bytes
+HTML transferred:       11000 bytes
+Requests per second:    3692.76 [#/sec] (mean)
+Time per request:       27.080 [ms] (mean)
+Time per request:       0.271 [ms] (mean, across all concurrent requests)
+Transfer rate:          461.60 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    0   0.4      0       1
+Processing:     4   25   3.9     26      31
+Waiting:        2   15   6.7     14      27
+Total:          4   25   3.9     26      31
+
+Percentage of the requests served within a certain time (ms)
+  50%     26
+  66%     26
+  75%     26
+  80%     27
+  90%     27
+  95%     27
+  98%     28
+  99%     28
+ 100%     31 (longest request)
+```
 

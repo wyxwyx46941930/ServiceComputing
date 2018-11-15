@@ -2,7 +2,7 @@ package main
 
 import (
     "os"
-    "web/service"
+    "github.com/web/service"
     flag "github.com/spf13/pflag"
 )
 
